@@ -380,7 +380,7 @@ persistent分区存在安卓Framework层实现的数据校验机制。分区的�
 
 LK就是读取persistent分区的最后一个字节来决定是否允许"OEM解锁"，即是否允许接受BL锁状态变更指令。有趣的是，LK似乎并不关心persistent分区的SHA-256哈希校验结果，只关心最后一个字节的值。当安卓系统的Framework发现persistent分区的SHA-256校验结果不对时才会重置persistent分区的内容，即填零，也就关闭了"OEM解锁"开关。
 
-三星手机的LK除了读取"OEM解锁"标记外，自然还要检测KNOX状态是否正确，才会允许BL解锁。如果persistent分区的标记为0x01，但是KNOX状态不对，会显示U1标记，而不是U标记，此时同L标记，不会进入BL解锁页面。
+三星手机的LK除了读取"OEM解锁"标记外，自然还要检测KNOX状态是否正确，才会允许BL解锁。如果persistent分区的标记为0x01，但是KNOX状态不对，会显示"OEM解锁"为U1状态，而不是U状态，此时同L状态，不会允许进入BL解锁页面。
 
 ---
 
