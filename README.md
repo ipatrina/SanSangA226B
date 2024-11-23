@@ -1241,6 +1241,28 @@ https://github.com/MatrixEditor/samloader3
 
 ---
 
+**为什么有的预装APP可以卸载，有的不行？**
+
+只有/data/app目录下的APP可以被卸载。
+
+/system/app、/system/priv-app、/product/app、/product/priv-app等系统分区目录下的预装APP不能卸载，只能停用。
+
+而一部分系统分区目录下的APP，不允许停用，是因为它们采用了与安卓系统相同的OEM签名，成为了操作系统的一部分。这类应用还可以在AndroidManifest.xml中申请以system用户(uid = 1000)运行。
+
+系统应用存放在系统分区app与priv-app目录的不同，与安卓应用权限(短信、摄像头、麦克风、后台驻守等)有关，与Linux权限和可卸载特性无关。priv-app中存放的APP的安卓应用权限更大。
+
+所以仅凭安卓自身特性是无法预置可卸载APP的，因为它们需要存放在/data/app目录下，而/data目录又无法在恢复出厂设置后保留。OEM厂商需要另辟蹊径。OEM常见的预置可卸载APP手法有二：一是创建诸如/system/data-app之类的非安卓标准路径，然后首次启动时用脚本复制到/data分区。二是使用userdata分区镜像，布置成需要恢复/data数据备份的场景。
+
+---
+
+**手机没有预装谷歌GMS服务，有没有靠谱一点的获取办法？**
+
+从别的OEM固件包里面扽。谷歌Pixel手机、三星Galaxy手机的固件包都可以通过官方服务器下载，再从里面提取出纯净的GMS安装包，足够用了。
+
+其实许多手机预置了GMS服务，只是没有预置Play商店。对于这种情况，只需要从其他的OEM固件包中提取出Play商店安装包即可。Play商店安装包的名字叫做"Phonesky"，非常混淆视听，谷歌做到了。
+
+---
+
 **如何找到一个靠谱的Odin刷机工具？**
 
 认准XDA论坛。
