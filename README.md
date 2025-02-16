@@ -1094,7 +1094,7 @@ cmdline中存在"androidboot.verifiedbootstate=green"为未解锁，"androidboot
 
 **自己手动root都要改哪些分区？**
 
-- vbmeta - 将第123字节改为0x03。
+- vbmeta - 将第124字节(指针偏移123)改为0x03。
 
 - boot - 修改内核并重新打包boot镜像。
 
