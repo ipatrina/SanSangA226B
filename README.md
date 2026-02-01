@@ -1060,6 +1060,10 @@ setprop vendor.boot.vbmeta.device_state locked
 
 且APP判定运行环境风险一般是基于root痕迹，而不是检测BL锁或者TEE状态。因此优化这些属性值的意义不大。
 
+基于TEE的环境安全检测，APP作者可以选择离线完成(参考以下项目)，也可以使用Play Integrity在线服务。安卓系统均提供对应API接口。
+
+https://github.com/vvb2060/KeyAttestation
+
 ---
 
 **BL解锁不等于root？**
@@ -1070,7 +1074,7 @@ BL解锁只是允许LK不验证将要启动的内核镜像的签名。
 
 内核及安卓系统有没有能够获取root权限的第三方进程或改动，又是另外一码事。
 
-这也就是为什么解锁BL并不会导致三星熔断，修改内核或安卓系统文件才会。常见的三星熔断触发原因主要基于对boot或vbmeta分区的改动。
+这也就是为什么解锁BL并不会导致三星熔断，修改内核或安卓系统文件才会。常见的三星熔断触发原因主要基于对boot或vbmeta分区的改动(并启动)。
 
 ```
 Set Warranty Bit : vbmeta
